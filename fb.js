@@ -42,6 +42,7 @@ function loadFeed(uid) {
 			var newPostElem = renderPost(response.data[i]);
 			sphere.addPost(new Post(newPostElem));
 		}
+		document.getElementById("message").removeChild(document.getElementsByClassName("loading")[0]);
 	});
 }
 
