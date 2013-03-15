@@ -1,0 +1,11 @@
+<%# <div class="post"> %>
+	<a href="https://facebook.com/<%= author.id %>" target="_blank" class="profilePicture">
+		<img src="https://graph.facebook.com/<%= author.id %>/picture" alt="profile picture" />
+	</a>
+	<a href="https://facebook.com/<%= author.id %>" target="_blank" class="profileLink"><%= author.name %></a>
+	
+	<br />
+	<a href="<%= permalink %>" target="_blank" class="permalink"><%= created_time %></a>
+
+	<p><%= message %></p>
+<%# </div> %>

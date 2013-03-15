@@ -1,0 +1,16 @@
+.sphere {
+	position: fixed;
+	
+	-webkit-transform-origin: center center;
+	   -moz-transform-origin: center center;
+	    -ms-transform-origin: center center;
+	     -o-transform-origin: center center;
+	        transform-origin: center center;
+	
+	
+}
+.sphere .post {
+	position: absolute;
+	top: -200px; /* arbitrary vertical offset */
+	left: -190px; /* .post width / 2 = 380 / 2 = 190 */
+}

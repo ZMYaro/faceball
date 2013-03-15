@@ -1,0 +1,31 @@
+.post {
+	background-color: white;
+	border: 1px solid #C4CDE0;
+	border-radius: 3px;
+	padding: 13px 15px;
+
+	width: 380px;
+	
+	text-align: left;
+}
+
+.post a.profileLink {
+	font-weight: bold;
+}
+
+.post .permalink {
+	color: gray;
+}
+
+.post .profilePicture {
+	float: left;
+	margin-right: 8px;
+}
+
+.post p {
+	font-size: 13px;
+	line-height: 18px;
+}
+.post p a.profileLink {
+	font-weight: normal;
+}
