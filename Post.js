@@ -24,6 +24,8 @@ Post.prototype._set3DCoords = function() {
 	    this.elem.style.MsTransform = "translate3d(" + x + "px, " + y + "px, " + z + "px)";
 	     this.elem.style.OTransform = "translate3d(" + x + "px, " + y + "px, " + z + "px)";
 	      this.elem.style.transform = "translate3d(" + x + "px, " + y + "px, " + z + "px)";
+	
+	this.elem.style.zIndex = Math.round(z) + SPHERE_RADIUS;
 }
 Object.defineProperties(Post.prototype, {
 	"longitude": {
