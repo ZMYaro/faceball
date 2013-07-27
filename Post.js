@@ -17,7 +17,7 @@ function Post(elem) {
 Post.prototype._set3DCoords = function() {
 	var x = this._radius * Math.sin(deg2rad(this._longitude)) * Math.sin(deg2rad(this._latitude));
 	var y = this._radius * Math.sin(deg2rad(this._longitude)) * Math.cos(deg2rad(this._latitude));
-	var z = this._radius * Math.cos(deg2rad(this._longitude));
+	var z = this._radius * Math.cos(deg2rad(this._longitude)) + Sphere.Z_OFFSET;
 	
 	this.elem.style.WebkitTransform = "translate3d(" + x + "px, " + y + "px, " + z + "px)";
 	   this.elem.style.MozTransform = "translate3d(" + x + "px, " + y + "px, " + z + "px)";
