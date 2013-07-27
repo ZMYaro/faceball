@@ -102,6 +102,7 @@ function renderPost(post) {
 		author: post.from,
 		permalink: permalink,
 		created_time: postDispDate,
+		fullDate: postDate.toString(),
 		message: post.message,
 		story: post.story
 	};
