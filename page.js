@@ -21,7 +21,7 @@ function initSphere() {
 	sphere = new Sphere();
 	window.addEventListener("resize", function() { sphere.recenter(); }, false);
 	document.addEventListener("mousedown", function(e) {
-		if(e.button === 0 && !e.ctrlKey && !e.altKey && !e.shiftKey && !e.metaKey) {
+		if(e.button === 0 && !e.ctrlKey && !e.altKey && !e.shiftKey && !e.metaKey && e.target.nodeName !== "A") {
 			sphere.dragging = true;
 			document.body.requestPointerLock();
 		}
