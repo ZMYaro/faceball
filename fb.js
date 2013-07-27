@@ -96,9 +96,11 @@ function renderPost(post) {
 		postDispDate = postDate.toLocaleTimeString();
 	}
 	
+	var permalink = "https://facebook.com/" + post.id.replace("_", "/posts/");
+	
 	var templateVars = {
 		author: post.from,
-		permalink: post.link,
+		permalink: permalink,
 		created_time: postDispDate,
 		message: post.message,
 		story: post.story
