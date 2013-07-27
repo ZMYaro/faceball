@@ -101,7 +101,6 @@ function renderPost(post) {
 	
 	if(post.message_tags) {
 		post.message = insertTags(post.message, post.message_tags);
-		console.log(post.message);
 	}
 	if(post.story_tags) {
 		post.story = insertTags(post.story, post.story_tags);
