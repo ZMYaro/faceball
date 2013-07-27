@@ -38,32 +38,47 @@
 	font-weight: normal;
 }
 
-.post a.postLink {
+.post .postLink, .post .postPhoto {
 	display: block;
+	margin: 12px 0;
+}
+
+.post .postLink {
 	background-color: #F6F7F9;
 	border: 1px solid #D3DAE8;
 	box-shadow: 0 1px 3px -1px rgba(0,0,0,0.15);
-	height: 116px;
-	margin: 12px 0;
+	max-height: 116px;
 	text-decoration: none;
 }
-.post a.postLink img {
-	float: left;
-	height: 116px;
-	/*border-right: 1px solid #D3DAE8;*/
-}
-.post a.postLink .text {
-	padding: 12px;
-	overflow: hidden;
-	height: 90px;
-}
-.post a.postLink .name {
-	color: #3B5998;
-	font-weight: bold;
-}
-.post a.postLink .caption, .post a.postLink .description {
-	color: #89919C;
-}
-.post a.postLink .description {
-	padding-top: 14px;
-}
+	.post .postLink img {
+		float: left;
+		height: 116px;
+		/*border-right: 1px solid #D3DAE8;*/
+	}
+	.post .postLink .text {
+		padding: 12px;
+		overflow: hidden;
+		height: 90px;
+	}
+	.post .postLink .name {
+		color: #3B5998;
+		font-weight: bold;
+	}
+	.post .postLink .caption, .post .postLink .description {
+		color: #89919C;
+	}
+	.post .postLink .description {
+		padding-top: 14px;
+	}
+
+
+	.post .postPhoto img {
+		max-width: 100%;
+		max-height: 400px;
+	}
+	.post .postPhoto .caption {
+		border-left: 2px solid #CCC;
+		margin-top: 10px;
+		padding-left: 8px;
+		color: gray;
+	}

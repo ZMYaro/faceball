@@ -27,5 +27,14 @@
 				<% } %>
 			</div>
 		</a>
+	<% } else if(type === "photo") { %>
+		<div class="postPhoto">
+			<a href="<%= link %>" target="_blank">
+				<img src="<%= picture %>" />
+			</a>
+			<% if(typeof caption !== "undefined") { %>
+				<div class="caption"><%= caption %></div>
+			<% } %>
+		</a>
 	<% } %>
 <%# </div> %>
