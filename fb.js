@@ -2,6 +2,21 @@
 
 var sphere;
 
+var MONTHS = [
+	"January",
+	"February",
+	"March",
+	"April",
+	"May",
+	"June",
+	"July",
+	"August",
+	"September",
+	"October",
+	"November",
+	"December"
+];
+
 window.fbAsyncInit = function() {
 	// init the FB JS SDK
 	FB.init({
@@ -67,10 +82,24 @@ function fbui() {
 }
 
 function renderPost(post) {
+	var postDate = new Date(post.created_time);
+	var today = new Date();
+	var postDispDate = MONTHS[postDate.getMonth()] + " " + postDate.getDate();
+	
+	// If the post was not posted this year...
+	if(postDate.getFullYear() !== today.getFullYear()) {
+		// ...display the year.
+		postDispDate += ", " + postDate.getFullYear();
+	// If the post was posted today... (it must have been posted this year if it gets to the else)
+	} else if(postDate.getMonth() === today.getMonth() && postDate.getDate() === today.getDate()) {
+		// ...display the time it was posted instead.
+		postDispDate = postDate.toLocaleTimeString();
+	}
+	
 	var templateVars = {
 		author: post.from,
 		permalink: post.link,
-		created_time: post.created_time,
+		created_time: postDispDate,
 		message: post.message,
 		story: post.story
 	};
