@@ -4,9 +4,13 @@
 	border-radius: 3px;
 	padding: 13px 15px;
 
-	width: 380px;
+	width: 480px;
 	
 	text-align: left;
+}
+
+.post header {
+	min-height: 40px;
 }
 
 .post a.profileLink {
@@ -21,6 +25,10 @@
 	float: left;
 	margin-right: 8px;
 }
+.post .profilePicture img {
+	width: 40px;
+	height: 40px;
+}
 
 .post p {
 	font-size: 13px;
@@ -28,4 +36,34 @@
 }
 .post p a.profileLink {
 	font-weight: normal;
+}
+
+.post a.postLink {
+	display: block;
+	background-color: #F6F7F9;
+	border: 1px solid #D3DAE8;
+	box-shadow: 0 1px 3px -1px rgba(0,0,0,0.15);
+	height: 116px;
+	margin: 12px 0;
+	text-decoration: none;
+}
+.post a.postLink img {
+	float: left;
+	height: 116px;
+	/*border-right: 1px solid #D3DAE8;*/
+}
+.post a.postLink .text {
+	padding: 12px;
+	overflow: hidden;
+	height: 90px;
+}
+.post a.postLink .name {
+	color: #3B5998;
+	font-weight: bold;
+}
+.post a.postLink .caption, .post a.postLink .description {
+	color: #89919C;
+}
+.post a.postLink .description {
+	padding-top: 14px;
 }

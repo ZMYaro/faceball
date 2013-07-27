@@ -1,11 +1,31 @@
 <%# <div class="post"> %>
-	<a href="https://facebook.com/<%= author.id %>" target="_blank" class="profilePicture">
-		<img src="https://graph.facebook.com/<%= author.id %>/picture" alt="profile picture" />
-	</a>
-	<a href="https://facebook.com/<%= author.id %>" target="_blank" class="profileLink"><%= author.name %></a>
+	<header>
+		<a href="https://facebook.com/<%= from.id %>" target="_blank" class="profilePicture">
+			<img src="https://graph.facebook.com/<%= from.id %>/picture" alt="profile picture" />
+		</a>
+		<a href="https://facebook.com/<%= from.id %>" target="_blank" class="profileLink"><%= from.name %></a>
 	
-	<br />
-	<a href="<%= permalink %>" target="_blank" class="permalink" title="<%= fullDate %>"><%= created_time %></a>
-
-	<p><%= message %></p>
+		<br />
+		<a href="<%= permalink %>" target="_blank" class="permalink" title="<%= fullDate %>"><%= dispDate %></a>
+	</header>
+	
+	<% if(typeof message !== "undefined") { %>
+		<p><%= message %></p>
+	<% } %>
+	<% if(type === "link" || type === "swf") { %>
+		<a href="<%= link %>" target="_blank" class="postLink">
+			<% if(typeof picture !== "undefined") { %>
+				<img src="<%= picture %>" />
+			<% } %>
+			<div class="text">
+				<div class="name"><%= name %></div>
+				<% if(typeof caption !== "undefined") { %>
+					<div class="caption"><%= caption %></div>
+				<% } %>
+				<% if(typeof description !== "undefined") { %>
+					<div class="description"><%= description %></div>
+				<% } %>
+			</div>
+		</a>
+	<% } %>
 <%# </div> %>

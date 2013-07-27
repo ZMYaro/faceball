@@ -27,28 +27,28 @@ window.fbAsyncInit = function() {
 		//xfbml      : true  // parse XFBML tags on this page?
 	});
 	// Additional initialization code such as adding Event Listeners goes here
-	document.getElementById("message").innerHTML = "<br /><br /><h1>Logging in...</h1>";
+	document.getElementById("greeting").innerHTML = "<br /><br /><h1>Logging in...</h1>";
 	FB.login(function(response) {
 		if(response.authResponse) {
-			document.getElementById("message").innerHTML = "<br /><br /><h1>Welcome.  Fetching your information...</h1>";
+			document.getElementById("greeting").innerHTML = "<br /><br /><h1>Welcome.  Fetching your information...</h1>";
 			FB.api('/me', function(response) {
-				document.getElementById("message").innerHTML = "<br /><br /><h1>Welcome, " + response.name + ".</h1>" +
+				document.getElementById("greeting").innerHTML = "<br /><br /><h1>Welcome, " + response.name + ".</h1>" +
 					"<br /><br /><button onclick=\"this.parentElement.removeChild(this);loadFeed();\">Open Your Timeball</button>";
 			});
 		} else {
-			document.getElementById("message").innerHTML = "<br /><br /><p>Login cancelled or not fully authorized.</p>";
+			document.getElementById("greeting").innerHTML = "<br /><br /><p>Login cancelled or not fully authorized.</p>";
 		}
 	});
 };
 
 function loadFeed(uid) {
-	document.getElementById("message").innerHTML += "<div class=\"loading\"><div></div><div></div><div></div></div>";
+	document.getElementById("greeting").innerHTML += "<div class=\"loading\"><div></div><div></div><div></div></div>";
 	if(!uid) {
 		uid = "me";
 	}
 	FB.api("/" + uid + "/feed", {limit: 200}, function(response) {
 		if(!response || response.error) {
-			document.getElementById("message").innerHTML = "<br /><br /><p>Something went wrong while loading posts.</p>" +
+			document.getElementById("greeting").innerHTML = "<br /><br /><p>Something went wrong while loading posts.</p>" +
 				"<p style=\"font-size: smaller;\">That is all I know...</p>";
 			return;
 		}
@@ -57,7 +57,7 @@ function loadFeed(uid) {
 			var newPostElem = renderPost(response.data[i]);
 			sphere.addPost(new Post(newPostElem));
 		}
-		document.getElementById("message").removeChild(document.getElementsByClassName("loading")[0]);
+		document.getElementById("greeting").removeChild(document.getElementsByClassName("loading")[0]);
 	});
 }
 
@@ -84,43 +84,32 @@ function fbui() {
 function renderPost(post) {
 	var postDate = new Date(post.created_time);
 	var today = new Date();
-	var postDispDate = MONTHS[postDate.getMonth()] + " " + postDate.getDate();
+	post.dispDate = MONTHS[postDate.getMonth()] + " " + postDate.getDate();
 	
 	// If the post was not posted this year...
 	if(postDate.getFullYear() !== today.getFullYear()) {
 		// ...display the year.
-		postDispDate += ", " + postDate.getFullYear();
+		post.dispDate += ", " + postDate.getFullYear();
 	// If the post was posted today... (it must have been posted this year if it gets to the else)
 	} else if(postDate.getMonth() === today.getMonth() && postDate.getDate() === today.getDate()) {
 		// ...display the time it was posted instead.
-		postDispDate = postDate.toLocaleTimeString();
+		post.dispDate = postDate.toLocaleTimeString();
 	}
 	
-	var permalink = "https://facebook.com/" + post.id.replace("_", "/posts/");
-	
-	var templateVars = {
-		author: post.from,
-		permalink: permalink,
-		created_time: postDispDate,
-		fullDate: postDate.toString(),
-		message: post.message,
-		story: post.story
-	};
+	post.fullDate = postDate.toString();
+	post.permalink = "https://facebook.com/" + post.id.replace("_", "/posts/");
 	
 	if(post.message_tags) {
-		templateVars.message = insertTags(templateVars.message, post.message_tags);
+		post.message = insertTags(post.message, post.message_tags);
+		console.log(post.message);
 	}
 	if(post.story_tags) {
-		templateVars.story = insertTags(templateVars.story, post.story_tags);
-	}
-	
-	if(post.picture) {
-		templateVars.picture = post.picture;
+		post.story = insertTags(post.story, post.story_tags);
 	}
 	
 	var postElem = document.createElement("div");
 	postElem.className = "post";
-	postElem.innerHTML = new EJS({url: "post.ejs"}).render(templateVars);
+	postElem.innerHTML = new EJS({url: "post.ejs"}).render(post);
 	return postElem;
 }
 function insertTags(text, tags) {
