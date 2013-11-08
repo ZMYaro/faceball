@@ -22,7 +22,10 @@ function initSphere() {
 	window.addEventListener("resize", function() { sphere.recenter(); }, false);
 	document.addEventListener("mousedown", function(e) {
 		if(e.button === 0 && !e.ctrlKey && !e.altKey && !e.shiftKey && !e.metaKey &&
-				e.target.nodeName !== "A" && e.target.parentElement.nodeName !== "A" && e.target.parentElement.parentElement.nodeName !== "A") {
+				e.target.nodeName !== "A" &&
+					(e.target.parentElement ?
+						(e.target.parentElement.nodeName !== "A") && (e.target.parentElement.parentElement ?
+							(e.target.parentElement.parentElement.nodeName !== "A") : true) : true)) {
 				// TODO: Replace th^s with something more elegant.
 			sphere.dragging = true;
 			document.body.requestPointerLock();
